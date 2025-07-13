@@ -6,7 +6,7 @@
 
     <groupId>de.MCmoderSD</groupId>
     <artifactId>Omni-Moderation</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>Omni-Moderation</name>
     <description>Omni Moderation is a Java Wrapper for the OpenAI Moderation API</description>

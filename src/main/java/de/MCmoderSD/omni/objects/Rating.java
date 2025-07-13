@@ -142,10 +142,56 @@ public class Rating implements Serializable {
     }
 
     /**
-     * Gets the flag object for a specific category.
+     * Retrieves all flags from the moderation result.
      *
-     * @param category The moderation category.
-     * @return The corresponding flag.
+     * @return A list of all flags.
+     */
+    public ArrayList<Flag> getFlags() {
+        return new ArrayList<>(flags.values());
+    }
+
+    /**
+     * Retrieves flags based on their flagged status.
+     *
+     * @param flagged Whether to retrieve flagged or unflagged categories.
+     * @return A list of flags matching the specified status.
+     */
+    public ArrayList<Flag> getFlags(boolean flagged) {
+        ArrayList<Flag> result = new ArrayList<>();
+        for (Flag flag : flags.values()) if (flag.flagged == flagged) result.add(flag);
+        return result;
+    }
+
+    /**
+     * Retrieves flags with a score above a specified threshold.
+     *
+     * @param threshold The minimum score to filter flags.
+     * @return A list of flags with scores above the threshold.
+     */
+    public ArrayList<Flag> getFlags(double threshold) {
+        ArrayList<Flag> result = new ArrayList<>();
+        for (Flag flag : flags.values()) if (flag.score >= threshold) result.add(flag);
+        return result;
+    }
+
+    /**
+     * Retrieves flags based on their flagged status and a score threshold.
+     *
+     * @param flagged   Whether to retrieve flagged or unflagged categories.
+     * @param threshold The minimum score to filter flags.
+     * @return A list of flags matching the specified status and score threshold.
+     */
+    public ArrayList<Flag> getFlags(boolean flagged, double threshold) {
+        ArrayList<Flag> result = new ArrayList<>();
+        for (Flag flag : flags.values()) if (flag.flagged == flagged && flag.score >= threshold) result.add(flag);
+        return result;
+    }
+
+    /**
+     * Retrieves a specific flag based on its category.
+     *
+     * @param category The category of the flag to retrieve.
+     * @return The flag corresponding to the specified category, or null if not found.
      */
     public Flag getFlag(Category category) {
         return flags.get(category);
