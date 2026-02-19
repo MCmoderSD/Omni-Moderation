@@ -1,34 +1,29 @@
-import de.MCmoderSD.omni.Moderator;
 import de.MCmoderSD.omni.objects.Rating;
+import de.MCmoderSD.omni.Moderator;
 
-import java.util.Scanner;
+void main() {
 
-public class ChatExample {
+    // Initialize Moderator
+    Moderator moderator = new Moderator("your-api-key"); // Replace with your actual API key
 
-    public static void main(String[] args) {
+    // Input
+    String input;
 
-        // Initialize Moderator
-        Moderator moderator = new Moderator("your-api-key"); // Replace with your actual API key
+    IO.println("User Input:");
+    while (!(input = IO.readln()).equalsIgnoreCase("exit")) {
 
-        // Scanner for user input
-        Scanner scanner = new Scanner(System.in);
-        String input;
+        // Prompt
+        Rating rating = moderator.moderate(input);
 
-        System.out.println("User Input:");
-        while (!(input = scanner.nextLine()).equalsIgnoreCase("exit")) {
+        // Print Rating
+        IO.println(formatData(rating.getData(Rating.Data.POSITIVE)));
 
-            // Prompt
-            Rating rating = moderator.moderate(input);
-
-            // Print Rating
-            System.out.println(formatData(rating.getData(Rating.Data.POSITIVE)));
-
-            // User Input
-            System.out.println("\nUser Input:");
-        }
+        // User Input
+        IO.println("\nUser Input:");
     }
+}
 
-    private static String formatData(String data) {
-        return data.isBlank() ? "" : "- " + data.replace("\n", "\n- ");
-    }
+// Helper Method
+private static String formatData(String data) {
+    return data.isBlank() ? "" : "- " + data.trim().replace("\n", "\n- ");
 }

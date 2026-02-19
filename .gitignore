@@ -10,10 +10,6 @@ docs/java/
 ### Output ###
 out/artifacts/
 
-### Resources ###
-/src/main/resources/META-INF/
-/src/test/resources/META-INF/
-
 ### Target ###
 target/
 !.mvn/wrapper/maven-wrapper.jar
